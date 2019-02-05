@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const moveSchema = new Schema ({
-  // id - ¿es necesario definirlo?
+  
   owner: {type: ObjectId, ref: 'User'}, require: true,
   number: Number, require: true, unique: true,
   title: String,

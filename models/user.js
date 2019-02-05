@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId;
 const userSchema = new Schema({
   username: String,
   password: String,
-  irstName: String,
+  firstName: String,
   lastName: String,
   avatar: String,
   moves: {type: ObjectId, ref: 'Move'}
