@@ -8,8 +8,9 @@ const { isLoggedIn } = require('../helpers/middlewares');
 
 router.get('/get', (req, res, next) => {
   const owner = req.session.currentUser._id;
+  //const owner = "5c58027f5b796433e23b6eb0"
   console.log(owner)
-  Move.findOne({ owner })
+  Move.find({ owner })
     
     .then(move => {
       if (!move) {
