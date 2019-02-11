@@ -5,10 +5,10 @@ const ObjectId = Schema.Types.ObjectId;
 const userSchema = new Schema({
   username: String,
   password: String,
-  firstName: String,
-  lastName: String,
+  firstname: String,
+  lastname: String,
   avatar: String,
-  moves: {type: ObjectId, ref: 'Move'}
+  
 }, {
   timestamps: {
     createdAt: 'created_at',

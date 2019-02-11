@@ -52,11 +52,13 @@ router.post('/login', (req, res, next) => {
     .catch(next);
 });
 
-
 router.post('/signup', (req, res, next) => {
   const {
     username,
-    password
+    password,
+    firstname,
+    lastname,
+    avatar,
   } = req.body;
 
   if (!username || !password) {
@@ -81,6 +83,9 @@ router.post('/signup', (req, res, next) => {
       const newUser = User({
         username,
         password: hashPass,
+        firstname,
+        lastname,
+        avatar,
       });
 
       return newUser.save().then(() => {
@@ -96,6 +101,44 @@ router.post('/logout', (req, res) => {
   return res.status(204).send();
 });
 
+// router.put('/edit', (req, res, next) => {
+//   const data = req.body
+//   const user = req.session.currentUser._id;
+//   User.findByIdAndUpdate(user, data)
+ 
+//   .then((result)=>{
+
+//     res.status(200).json(data)
+//   })
+//   .catch(next)
+// });
+
+// router.put('/edit', isLoggedIn(), (req, res, next) => {
+//   const { data } = req.body;
+//   const userId = req.session.currentUser._id;
+//   User.findByIdAndUpdate(user, data)
+//     .then((user) => {
+//       if (!user) {
+//         return res.status(404).json({
+//           error: 'user-not-found'
+//         });
+//       }
+//       req.session.currentUser = user;
+//       return res.status(200).json(user);
+//     })
+//     .catch(next);
+// });
+router.put('/update', (req, res, next) => {
+  const data = req.body
+  const user = req.session.currentUser._id;
+  User.findByIdAndUpdate(user, data)
+ 
+  .then((result)=>{
+
+    res.status(200).json(data)
+  })
+  .catch(next)
+});
 router.get('/private', isLoggedIn(), (req, res, next) => {
   res.status(200).json({
     message: 'This is a private message'
