@@ -18,16 +18,6 @@ router.put('/update', isLoggedIn(), (req, res, next) => {
   .catch(next)
 });
 
-router.patch('/alertmode', (req, res, next) => {
-  let {mode} = req.body;
-  if(mode === "true"){ mode = true} else if(mode === "false"){ mode = false}
-  const user = req.session.currentUser._id;
-  User.findByIdAndUpdate(user, { alertmode: mode })
-  .then((result)=>{
-    res.status(200).json(result)
-  })
-  .catch(next)
-});
 
 router.patch('/addMove', (req, res) => {
   const move = req.body

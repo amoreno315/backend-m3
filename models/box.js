@@ -3,15 +3,16 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const boxSchema = new Schema({
-  owner: {type: ObjectId, ref: 'User'}, requiere: true, 
-  boxnummer: Number, requiere: true, unique: true,
+  owner: {type: ObjectId, ref: 'User'},  
+  move: {type: ObjectId, ref: 'Move'}, 
+  boxnummer: Number, 
   boxname: String, 
   category: String,
   description: String, 
   storagelocation: String,
   items: [{
-    nameItem: String, 
-    quantity: Number, 
+    nameitem: String, 
+    quantity: Number,
     description: String,
     image: String,
   }]
