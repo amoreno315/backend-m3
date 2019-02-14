@@ -65,16 +65,16 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-// router.post('/addItem', (req, res, next) => {
-//   const {nameitem, quantity, description, image, idBox} = req.body;
-//   const idPostman = "5c651b60b4de1c741ba12dfd"
-//   const id = req.params.id
-//   Box.findByIdAndUpdate(idPostman)
-//     .then(box => {
-//       box.items.push({nameitem, quantity, description, image})
-//       return res.json(box)
-//     })
-// })
+router.patch('/addItem', (req, res, next) => {
+  const {nameitem, quantity, description, image, idBox} = req.body;
+  const idPostman = "5c651b60b4de1c741ba12dfd"
+  const id = req.params.id
+  Box.findByIdAndUpdate(idPostman)
+    .then(box => {
+      box.items.push({nameitem, quantity, description, image})
+      return res.json(box)
+    })
+})
 
 
 module.exports = router;

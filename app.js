@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
 }).then(() => {
-  console.log(`Connected to database`);
+  console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
 }).catch((error) => {
   console.error(error);
 })
@@ -78,6 +78,11 @@ app.use((err, req, res, next) => {
   if (!res.headersSent) {
     res.status(500).json({ code: 'unexpected' });
   }
+});
+//si no funciona quitar
+app.use((req, res, next) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 module.exports = app;
