@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
 }).then(() => {
-  console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+  console.log(`Connected to Mongo!`);
 }).catch((error) => {
   console.error(error);
 })
@@ -28,10 +28,19 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const app = express();
 
-app.use(cors({
+// Set up a whitelist and check against it:
+var whitelist = [process.env.PUBLIC_DOMAIN]
+var corsOptions = {
   credentials: true,
-  origin: [process.env.PUBLIC_DOMAIN]
-}));
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors());
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 //   res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,OPTIONS,DELETE');
