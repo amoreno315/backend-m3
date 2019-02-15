@@ -1,0 +1,6 @@
+MONGODB_URI=mongodb://localhost:27017/basic-auth
+PUBLIC_DOMAIN=http://localhost:3000
+
+MONGODB_URI=mongodb://Admin:Mi11an@ds135255.mlab.com:35255/qbox
+
+PUBLIC_DOMAIN=https://qbox-app.firebaseapp.com
