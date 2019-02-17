@@ -28,19 +28,24 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const app = express();
 
-// Set up a whitelist and check against it:
-var whitelist = [process.env.PUBLIC_DOMAIN]
-var corsOptions = {
+app.use(cors({
   credentials: true,
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-app.use(cors());
+  origin: [process.env.PUBLIC_DOMAIN]
+}));
+
+// // Set up a whitelist and check against it:
+// var whitelist = [process.env.PUBLIC_DOMAIN]
+// var corsOptions = {
+//   credentials: true,
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
+// app.use(cors());
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 //   res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,OPTIONS,DELETE');
